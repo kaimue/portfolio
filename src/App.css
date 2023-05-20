@@ -3,7 +3,105 @@ body {
   margin: 0px;
 }
 
+@keyframes firstWelcome {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+@keyframes secondWelcome {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+@keyframes strokeAni {
+  0% {
+    stroke-dashoffset: 900;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+#welcome {
+  border: 2px solid black;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  height: 100vh;
+}
+
+#firstWelcome {
+  padding-left: 8em;
+  animation: firstWelcome 1s ease-out;
+}
+
+#secondWelcome {
+  padding-left: 8em;
+  padding-bottom: 5em;
+  animation: secondWelcome 1s ease-out;
+  animation-fill-mode: both;
+  animation-delay: 1s;
+}
+
+#portrait {
+  height: 18em;
+  padding-bottom: 20em;
+  padding-left: 30em;
+}
+
+#homeButton {
+  position: fixed;
+  top: 5em;
+  left: 5em;
+}
+
+svg {
+  height: 18em;
+}
+
+path {
+  stroke: #c82f04;
+  fill: none;
+  stroke-width: 1;
+  stroke-dasharray: 900 900;
+  animation: strokeAni 1s;
+  animation-fill-mode: both;
+  animation-delay: 2s;
+}
+
+#aboutMe {
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100vh;
+}
+
+#firstAbout {
+  padding-left: 5em;
+  padding-right: 5em;
+}
+
+#secondAbout {
+  padding-left: 5em;
+  padding-right: 5em;
+}
+
 .component {
+  border: 2px solid black;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
   height: 100vh;
 }
 

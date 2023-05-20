@@ -2,9 +2,9 @@ import React from "react";
 
 const AboutMe = () => {
   return (
-    <div className="component">
-      <h2>About Me</h2>
-      <p>
+    <div id="aboutMe">
+      <h2 id="firstAbout">About Me</h2>
+      <p id="secondAbout">
         Thus the best way this element can be used is in layouts. You can simply
         create multiple layouts, for e.g.- the Dashboard Layout(for the profile
         and members page) or the Main Layout(for login and logout, basically
