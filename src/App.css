@@ -3,6 +3,29 @@ body {
   margin: 0px;
 }
 
+#homeButton {
+  list-style: none;
+  position: fixed;
+  top: 5em;
+  left: 5em;
+  z-index: 1;
+}
+
+.svgButtons {
+  padding: 0px;
+  margin: 0px;
+}
+
+.active {
+  padding: 0px;
+  fill: rgb(91, 91, 91);
+}
+
+.inactive {
+  padding: 0px;
+  fill: lightgray;
+}
+
 @keyframes firstWelcome {
   0% {
     opacity: 0;
@@ -25,14 +48,31 @@ body {
 }
 @keyframes strokeAni {
   0% {
-    stroke-dashoffset: 900;
+    stroke-dashoffset: 5050;
   }
   100% {
     stroke-dashoffset: 0;
   }
 }
+@keyframes reveal {
+  0% {
+    transform: translateY(150px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
 #welcome {
-  border: 2px solid black;
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
@@ -40,12 +80,12 @@ body {
 }
 
 #firstWelcome {
-  padding-left: 8em;
+  padding-left: 15em;
   animation: firstWelcome 1s ease-out;
 }
 
 #secondWelcome {
-  padding-left: 8em;
+  padding-left: 15em;
   padding-bottom: 5em;
   animation: secondWelcome 1s ease-out;
   animation-fill-mode: both;
@@ -53,56 +93,95 @@ body {
 }
 
 #portrait {
-  height: 18em;
-  padding-bottom: 20em;
-  padding-left: 30em;
-}
-
-#homeButton {
-  position: fixed;
-  top: 5em;
-  left: 5em;
-}
-
-svg {
-  height: 18em;
+  width: 25vw;
+  padding-bottom: 20vh;
+  padding-left: 25vw;
 }
 
 path {
   stroke: #c82f04;
   fill: none;
   stroke-width: 1;
-  stroke-dasharray: 900 900;
-  animation: strokeAni 1s;
+  stroke-dasharray: 5050;
+  animation: strokeAni 2s;
   animation-fill-mode: both;
-  animation-delay: 2s;
+  animation-delay: 1.5s;
 }
 
 #aboutMe {
-  border: 2px solid black;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   height: 100vh;
+  padding-left: 10em;
+  padding-right: 10em;
 }
 
-#firstAbout {
-  padding-left: 5em;
-  padding-right: 5em;
+.aboutMeInitial {
+  opacity: 0;
 }
 
-#secondAbout {
-  padding-left: 5em;
-  padding-right: 5em;
+.aboutMeActive {
+  animation: reveal 2s;
 }
 
-.component {
-  border: 2px solid black;
+.aboutMe {
+  animation: fadeOut 1s;
+  animation-fill-mode: forwards;
+}
+
+#skills {
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-end;
+  justify-content: center;
+  align-items: center;
   height: 100vh;
+}
+
+.skillsParent {
+  position: relative;
+}
+
+.skills {
+  background-color: grey;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  padding-left: 10em;
+  padding-right: 10em;
+}
+
+.contactInitial {
+  width: 0px;
+}
+
+.contact {
+  width: 100%;
+  animation: fadeOut 1s;
+  animation-fill-mode: forwards;
+}
+
+.contactActive {
+  width: 100%;
+  animation: fadeOut 1s;
+  animation-direction: reverse;
+  animation-fill-mode: forwards;
+}
+
+@media screen and (max-width: 720px) {
+  #homeButton {
+    display: none;
+  }
+  #portrait {
+    display: none;
+  }
 }
 
 /*# sourceMappingURL=App.css.map */
