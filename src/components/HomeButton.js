@@ -1,12 +1,6 @@
 import React from "react";
-import { useState } from "react";
 
-const HomeButton = () => {
-  const [welcomeClass, setWelcomeClass] = useState("active");
-  const [aboutClass, setAboutClass] = useState("inactive");
-  const [skillClass, setSkillClass] = useState("inactive");
-  const [contactClass, setContactClass] = useState("inactive");
-
+const HomeButton = ({ aboutName, welcomeName, skillName, contactName }) => {
   const height = window.innerHeight;
 
   const scrollTo = (x) => {
@@ -19,71 +13,55 @@ const HomeButton = () => {
   return (
     <div id="homeButton">
       <svg className="svgButtons">
-        <ellipse
-          cx="10"
-          cy="10"
-          rx={welcomeClass === "active" ? "8" : "5"}
-          ry={welcomeClass === "active" ? "8" : "5"}
-          className={welcomeClass}
+        <rect
+          y="10"
+          width={welcomeName === "active" ? "15" : "10"}
+          height={welcomeName === "active" ? "15" : "10"}
+          rx={welcomeName === "active" ? "0" : "10"}
+          className={welcomeName}
           onClick={() => {
             scrollTo(0);
-            setWelcomeClass("active");
-            setAboutClass("inactive");
-            setSkillClass("inactive");
-            setContactClass("inactive");
           }}
-        ></ellipse>
+        ></rect>
 
         <br></br>
 
-        <ellipse
-          cx="10"
-          cy="30"
-          rx={aboutClass === "active" ? "8" : "5"}
-          ry={aboutClass === "active" ? "8" : "5"}
-          className={aboutClass}
+        <rect
+          y="30"
+          width={aboutName === "active" ? "15" : "10"}
+          height={aboutName === "active" ? "15" : "10"}
+          rx={aboutName === "active" ? "0" : "10"}
+          className={aboutName}
           onClick={() => {
             scrollTo(height);
-            setWelcomeClass("inactive");
-            setAboutClass("active");
-            setSkillClass("inactive");
-            setContactClass("inactive");
           }}
-        ></ellipse>
+        ></rect>
 
         <br></br>
 
-        <ellipse
-          cx="10"
-          cy="50"
-          rx={skillClass === "active" ? "8" : "5"}
-          ry={skillClass === "active" ? "8" : "5"}
-          className={skillClass}
+        <rect
+          y="50"
+          width={skillName === "active" ? "15" : "10"}
+          height={skillName === "active" ? "15" : "10"}
+          rx={skillName === "active" ? "0" : "10"}
+          className={skillName}
           onClick={() => {
             scrollTo(height * 2);
-            setWelcomeClass("inactive");
-            setAboutClass("inactive");
-            setSkillClass("active");
-            setContactClass("inactive");
           }}
-        ></ellipse>
+        ></rect>
 
         <br></br>
 
-        <ellipse
-          cx="10"
-          cy="70"
-          rx={contactClass === "active" ? "8" : "5"}
-          ry={contactClass === "active" ? "8" : "5"}
-          className={contactClass}
+        <rect
+          y="70"
+          width={contactName === "active" ? "15" : "10"}
+          height={contactName === "active" ? "15" : "10"}
+          rx={contactName === "active" ? "0" : "10"}
+          className={contactName}
           onClick={() => {
             scrollTo(height * 3);
-            setWelcomeClass("inactive");
-            setAboutClass("inactive");
-            setSkillClass("inactive");
-            setContactClass("active");
           }}
-        ></ellipse>
+        ></rect>
       </svg>
     </div>
   );
