@@ -1,31 +1,9 @@
 import React from "react";
-import { useState, useEffect } from "react";
 
 const AboutMe = () => {
-  const [className, setClassName] = useState("aboutMeInitial");
-
-  function onScroll() {
-    if (
-      window.scrollY >= window.innerHeight * 0.7 &&
-      window.scrollY <= window.innerHeight * 1.3
-    ) {
-      setClassName("aboutMeActive");
-    } else {
-      setClassName("aboutMe");
-    }
-  }
-
-  useEffect(() => {
-    window.addEventListener("scroll", onScroll);
-    //removes the eventlistener when the component is unmounted
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-    };
-  }, []);
-
   return (
     <div id="aboutMe">
-      <div className={className}>
+      <div className="aboutMeActive">
         <div>
           <h2>About Me</h2>
           <p>

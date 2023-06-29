@@ -4,26 +4,51 @@ body {
 }
 
 #homeButton {
-  list-style: none;
   position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
   top: 5em;
   left: 5em;
   z-index: 1;
 }
 
-.svgButtons {
-  padding: 0px;
-  margin: 0px;
+#hiddenButton {
+  background-color: none;
+  border: none;
+  padding: 1em 1em;
+  margin: 0.3em 0.3em;
+  border-radius: 30%;
+  opacity: 0;
 }
 
-.active {
-  padding: 0px;
-  fill: rgb(91, 91, 91);
+button.active {
+  background-color: #858585;
+  border: none;
+  padding: 0.7em 0.7em;
+  margin: 0.5em 0.3em;
+  border-radius: 30%;
+  transform: rotate(45deg);
+  transition-duration: 0.4s;
 }
 
-.inactive {
-  padding: 0px;
-  fill: lightgray;
+button.active:hover {
+  padding: 0.8em 0.8em;
+  margin: 0.4em 0.2em;
+}
+
+button.inactive {
+  background-color: #ffffff;
+  border: 1px solid #c7c7c7;
+  padding: 0.4em 0.4em;
+  margin: 0.4em 0.3em;
+  border-radius: 50%;
+}
+
+button.inactive:hover {
+  padding: 0.5em 0.5em;
+  margin: 0.3em;
 }
 
 @keyframes firstWelcome {
@@ -56,7 +81,7 @@ body {
 }
 @keyframes reveal {
   0% {
-    transform: translateY(150px);
+    transform: translateY(100px);
     opacity: 0;
   }
   100% {
@@ -72,6 +97,14 @@ body {
     opacity: 0;
   }
 }
+@keyframes lineExpand {
+  0% {
+    width: 0px;
+  }
+  100% {
+    width: 80%;
+  }
+}
 #welcome {
   display: flex;
   justify-content: flex-start;
@@ -81,15 +114,15 @@ body {
 
 #firstWelcome {
   padding-left: 15em;
-  animation: firstWelcome 1s ease-out;
+  animation: firstWelcome 0.6s ease-out;
 }
 
 #secondWelcome {
   padding-left: 15em;
   padding-bottom: 5em;
-  animation: secondWelcome 1s ease-out;
+  animation: secondWelcome 0.6s ease-out;
   animation-fill-mode: both;
-  animation-delay: 1s;
+  animation-delay: 0.6s;
 }
 
 #portrait {
@@ -105,7 +138,15 @@ path {
   stroke-dasharray: 5050;
   animation: strokeAni 2s;
   animation-fill-mode: both;
-  animation-delay: 1.5s;
+  animation-delay: 1.1s;
+}
+
+#BG {
+  fill: #e9e9e9;
+  z-index: -1;
+  position: fixed;
+  bottom: 0;
+  right: 0;
 }
 
 #aboutMe {
@@ -113,22 +154,14 @@ path {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  text-align: center;
   height: 100vh;
   padding-left: 10em;
   padding-right: 10em;
 }
 
-.aboutMeInitial {
-  opacity: 0;
-}
-
 .aboutMeActive {
-  animation: reveal 2s;
-}
-
-.aboutMe {
-  animation: fadeOut 1s;
-  animation-fill-mode: forwards;
+  animation: reveal 1s;
 }
 
 #skills {
@@ -142,36 +175,87 @@ path {
   position: relative;
 }
 
-.skills {
-  background-color: grey;
+#skillsSkills {
+  background-color: #858585;
   position: absolute;
   top: 0;
   left: 0;
+  padding: 0.4em 1em 0.4em 1em;
+  border-radius: 10px;
+}
+
+.html,
+.css,
+.javaScript,
+.react,
+.sass {
+  background-color: #858585;
+  border-radius: 10px;
+  padding: 0.2em;
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: top 1s, left 1s;
+}
+
+.html.skills {
+  background-color: #ff5b5b;
+  position: absolute;
+  top: 11em;
+  left: 3em;
+  transition: top 1s, left 1s, background-color 1s;
+}
+
+.css.skills {
+  background-color: #2fff5c;
+  position: absolute;
+  top: -13em;
+  left: 10em;
+  transition: top 1s, left 1s, background-color 1s;
+}
+
+.javaScript.skills {
+  background-color: #6c61ff;
+  position: absolute;
+  top: 5em;
+  left: -18em;
+  transition: top 1s, left 1s, background-color 1s;
+}
+
+.react.skills {
+  background-color: #ff2bed;
+  position: absolute;
+  top: -10em;
+  left: -12em;
+  transition: top 1s, left 1s, background-color 1s;
+}
+
+.sass.skills {
+  background-color: #4ef9ff;
+  position: absolute;
+  top: 1em;
+  left: 18em;
+  transition: top 1s, left 1s, background-color 1s;
 }
 
 #contact {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-align: center;
   height: 100vh;
   padding-left: 10em;
   padding-right: 10em;
 }
 
-.contactInitial {
-  width: 0px;
+a {
+  text-decoration: none;
+  color: black;
 }
 
-.contact {
-  width: 100%;
-  animation: fadeOut 1s;
-  animation-fill-mode: forwards;
-}
-
-.contactActive {
-  width: 100%;
-  animation: fadeOut 1s;
-  animation-direction: reverse;
+.contactLine {
+  animation: lineExpand 1s;
   animation-fill-mode: forwards;
 }
 
