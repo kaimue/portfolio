@@ -1,67 +1,167 @@
-import React from "react";
-import { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+
 import Welcome from "./Welcome";
 import AboutMe from "./AboutMe";
 import Skills from "./Skills";
 import Contact from "./Contact";
 
 const Layout = () => {
-  const [welcomeClass, setWelcomeClass] = useState("active");
-  const [aboutClass, setAboutClass] = useState("inactive");
-  const [skillClass, setSkillClass] = useState("inactive");
-  const [contactClass, setContactClass] = useState("inactive");
+  const [classNames, setClassNames] = useState({
+    welcomeClass: "active",
+    aboutClass: "inactive",
+    skillClass: "inactive",
+    contactClass: "inactive",
+  });
+
+  const [dimensions, setDimensions] = useState({
+    height: window.innerHeight,
+    width: window.innerWidth,
+  });
+
+  const elementRef = useRef(null);
+
+  useEffect(() => {
+    const element = elementRef?.current;
+
+    if (!element) return;
+
+    const observer = new ResizeObserver(() => {
+      setDimensions({
+        height: window.innerHeight,
+        width: window.innerWidth,
+      });
+    });
+
+    observer.observe(element);
+    return () => {
+      // Cleanup the observer by unobserving all elements
+      observer.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    displayed();
+  }, [classNames, dimensions]);
 
   const displayed = () => {
-    if (welcomeClass === "active") {
-      return <Welcome></Welcome>;
-    } else if (aboutClass === "active") {
-      return <AboutMe></AboutMe>;
-    } else if (skillClass === "active") {
-      return <Skills></Skills>;
-    } else if (contactClass === "active") {
-      return <Contact></Contact>;
+    const wHeight = dimensions.height;
+    const wWidth = dimensions.width;
+    if (classNames.welcomeClass === "active") {
+      return (
+        <div>
+          <svg className="BG" height={wHeight} width={wWidth}>
+            <polygon
+              points={`0,${wHeight / 4} 0,${wHeight} ${wWidth},${wHeight}`}
+            />
+          </svg>
+          <svg className="BG2" height={wHeight} width={wWidth}>
+            <polygon
+              points={`${wWidth},${wHeight} ${
+                wWidth / 5
+              },${wHeight} ${wWidth},${wHeight / 1.5}`}
+            />
+          </svg>
+          <Welcome></Welcome>
+        </div>
+      );
+    } else if (classNames.aboutClass === "active") {
+      return (
+        <div>
+          <svg className="BG" height={wHeight} width={wWidth}>
+            <polygon
+              points={`0,${wHeight / 3} 0,${wHeight} ${wWidth},${wHeight}`}
+            />
+          </svg>
+          <svg className="BG2" height={wHeight} width={wWidth}>
+            <polygon points={`${wWidth},${wHeight} 0,${wHeight} ${wWidth},0`} />
+          </svg>
+          <AboutMe></AboutMe>
+        </div>
+      );
+    } else if (classNames.skillClass === "active") {
+      return (
+        <div>
+          <svg className="BG" height={wHeight} width={wWidth}>
+            <polygon
+              points={`${wWidth},${wHeight} ${
+                wWidth / 4
+              },${wHeight} ${wWidth},${wHeight / 4}`}
+            />
+          </svg>
+          <svg className="BG2" height={wHeight} width={wWidth}>
+            <polygon
+              points={`0,${wHeight / 6} 0,${wHeight} ${wWidth},${wHeight}`}
+            />
+          </svg>
+          <Skills></Skills>
+        </div>
+      );
+    } else if (classNames.contactClass === "active") {
+      return (
+        <div>
+          <svg className="BG" height={wHeight} width={wWidth}>
+            <polygon
+              points={`${wWidth},${wHeight} ${
+                wWidth / 4
+              },${wHeight} ${wWidth},0`}
+            />
+          </svg>
+          <svg className="BG2" height={wHeight} width={wWidth}>
+            <polygon
+              points={`0,${wHeight / 3} 0,${wHeight} ${wWidth},${wHeight}`}
+            />
+          </svg>
+          <Contact></Contact>
+        </div>
+      );
     }
   };
 
   const onScroll = (e) => {
     const y = e.deltaY;
     console.log(y);
-    if (welcomeClass === "active" && y > 40) {
-      setWelcomeClass("inactive");
-      setAboutClass("active");
-      setSkillClass("inactive");
-      setContactClass("inactive");
-      displayed();
-    } else if (aboutClass === "active" && y > 40) {
-      setWelcomeClass("inactive");
-      setAboutClass("inactive");
-      setSkillClass("active");
-      setContactClass("inactive");
-      displayed();
-    } else if (aboutClass === "active" && y < -40) {
-      setWelcomeClass("active");
-      setAboutClass("inactive");
-      setSkillClass("inactive");
-      setContactClass("inactive");
-      displayed();
-    } else if (skillClass === "active" && y > 40) {
-      setWelcomeClass("inactive");
-      setAboutClass("inactive");
-      setSkillClass("inactive");
-      setContactClass("active");
-      displayed();
-    } else if (skillClass === "active" && y < -40) {
-      setWelcomeClass("inactive");
-      setAboutClass("active");
-      setSkillClass("inactive");
-      setContactClass("inactive");
-      displayed();
-    } else if (contactClass === "active" && y < -40) {
-      setWelcomeClass("inactive");
-      setAboutClass("inactive");
-      setSkillClass("active");
-      setContactClass("inactive");
-      displayed();
+    if (classNames.welcomeClass === "active" && y > 50) {
+      setClassNames({
+        welcomeClass: "inactive",
+        aboutClass: "active",
+        skillClass: "inactive",
+        contactClass: "inactive",
+      });
+    } else if (classNames.aboutClass === "active" && y > 50) {
+      setClassNames({
+        welcomeClass: "inactive",
+        aboutClass: "inactive",
+        skillClass: "active",
+        contactClass: "inactive",
+      });
+    } else if (classNames.aboutClass === "active" && y < -50) {
+      setClassNames({
+        welcomeClass: "active",
+        aboutClass: "inactive",
+        skillClass: "inactive",
+        contactClass: "inactive",
+      });
+    } else if (classNames.skillClass === "active" && y > 50) {
+      setClassNames({
+        welcomeClass: "inactive",
+        aboutClass: "inactive",
+        skillClass: "inactive",
+        contactClass: "active",
+      });
+    } else if (classNames.skillClass === "active" && y < -50) {
+      setClassNames({
+        welcomeClass: "inactive",
+        aboutClass: "active",
+        skillClass: "inactive",
+        contactClass: "inactive",
+      });
+    } else if (classNames.contactClass === "active" && y < -50) {
+      setClassNames({
+        welcomeClass: "inactive",
+        aboutClass: "inactive",
+        skillClass: "active",
+        contactClass: "inactive",
+      });
     }
   };
 
@@ -69,58 +169,56 @@ const Layout = () => {
 
   return (
     <div>
-      <div>
-        <svg id="BG" height={window.innerHeight} width={window.innerWidth}>
-          <polygon
-            points={`0,0 0,${window.innerHeight} ${window.innerWidth},${window.innerHeight}`}
-          />
-          Sorry, your browser does not support inline SVG.
-        </svg>
-      </div>
       <div id="homeButton">
         <button
-          className={welcomeClass}
+          className={classNames.welcomeClass}
           onClick={() => {
-            setWelcomeClass("active");
-            setAboutClass("inactive");
-            setSkillClass("inactive");
-            setContactClass("inactive");
-            displayed();
+            setClassNames({
+              welcomeClass: "active",
+              aboutClass: "inactive",
+              skillClass: "inactive",
+              contactClass: "inactive",
+            });
           }}
         ></button>
         <button
-          className={aboutClass}
+          className={classNames.aboutClass}
           onClick={() => {
-            setWelcomeClass("inactive");
-            setAboutClass("active");
-            setSkillClass("inactive");
-            setContactClass("inactive");
-            displayed();
+            setClassNames({
+              welcomeClass: "inactive",
+              aboutClass: "active",
+              skillClass: "inactive",
+              contactClass: "inactive",
+            });
           }}
         ></button>
         <button
-          className={skillClass}
+          className={classNames.skillClass}
           onClick={() => {
-            setWelcomeClass("inactive");
-            setAboutClass("inactive");
-            setSkillClass("active");
-            setContactClass("inactive");
-            displayed();
+            setClassNames({
+              welcomeClass: "inactive",
+              aboutClass: "inactive",
+              skillClass: "active",
+              contactClass: "inactive",
+            });
           }}
         ></button>
         <button
-          className={contactClass}
+          className={classNames.contactClass}
           onClick={() => {
-            setWelcomeClass("inactive");
-            setAboutClass("inactive");
-            setSkillClass("inactive");
-            setContactClass("active");
-            displayed();
+            setClassNames({
+              welcomeClass: "inactive",
+              aboutClass: "inactive",
+              skillClass: "inactive",
+              contactClass: "active",
+            });
           }}
         ></button>
         <button id="hiddenButton"></button>
       </div>
-      <div id="layout">{displayed()}</div>
+      <div id="layout" ref={elementRef}>
+        {displayed()}
+      </div>
     </div>
   );
 };
