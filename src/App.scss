@@ -1,11 +1,19 @@
 $primary-color: #c82f04;
 
-@mixin bg-theme($theme: #e9e9e9) {
-  fill: $theme;
+@mixin bg-mixin($color: #e9e9e9) {
+  fill: $color;
   z-index: -1;
   position: fixed;
   bottom: 0;
   right: 0;
+}
+
+@mixin skills-mixin($color: #e9e9e9, $top, $left) {
+  background-color: $color;
+  position: absolute;
+  top: $top;
+  left: $left;
+  transition: top 1s, left 1s, background-color 1s;
 }
 
 html,
@@ -123,6 +131,14 @@ button.inactive:hover {
   }
 }
 
+#background {
+  background-color: #858585;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  height: 100vh;
+}
+
 #welcome {
   display: flex;
   justify-content: flex-start;
@@ -135,13 +151,13 @@ button.inactive:hover {
 }
 
 #firstWelcome {
-  padding-left: 15em;
+  padding-left: 15vw;
   animation: firstWelcome 0.6s ease-out;
 }
 
 #secondWelcome {
-  padding-left: 15em;
-  padding-bottom: 5em;
+  padding-left: 15vw;
+  padding-bottom: 7vw;
   animation: secondWelcome 0.6s ease-out;
   animation-fill-mode: both;
   animation-delay: 0.6s;
@@ -163,12 +179,16 @@ button.inactive:hover {
   animation-delay: 1.1s;
 }
 
-.BG {
-  @include bg-theme($theme: #f4feff);
+#BG {
+  @include bg-mixin(#f2fdff);
 }
 
-.BG2 {
-  @include bg-theme($theme: #ffe0a73d);
+#BG1 {
+  @include bg-mixin(rgba(169, 229, 255, 0.268));
+}
+
+#BG2 {
+  @include bg-mixin(#fff1d056);
 }
 
 #aboutMe {
@@ -198,9 +218,10 @@ button.inactive:hover {
 }
 
 #skillsSkills {
-  background-color: #858585;
+  background-color: #ebebeb;
+  border: 1px solid #cacaca;
   position: absolute;
-  top: -2em;
+  top: -2vw;
   left: 0;
   padding: 0.4em 1em 0.4em 1em;
   border-radius: 25px;
@@ -212,53 +233,42 @@ button.inactive:hover {
 .react,
 .sass {
   background-color: #858585;
+  border: 1px solid #cacaca;
   border-radius: 10px;
   padding: 0.2em;
   opacity: 1;
   position: absolute;
-  top: -2em;
+  top: -2vw;
   left: 0;
   transition: top 1s, left 1s;
 }
 
+#skillsSvg {
+  stroke: #cacaca;
+  stroke-width: 1;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
 .html.skills {
-  background-color: #ffcbcb;
-  position: absolute;
-  top: 13em;
-  left: 3em;
-  transition: top 1s, left 1s, background-color 1s;
+  @include skills-mixin(#fffaf4, 12vw, 3vw);
 }
 
 .css.skills {
-  background-color: #d7ffe0;
-  position: absolute;
-  top: -20em;
-  left: 10em;
-  transition: top 1s, left 1s, background-color 1s;
+  @include skills-mixin(#fffaf4, -17vw, 10vw);
 }
 
 .javaScript.skills {
-  background-color: #d8d6ff;
-  position: absolute;
-  top: 3em;
-  left: -28em;
-  transition: top 1s, left 1s, background-color 1s;
+  @include skills-mixin(#fffaf4, 3vw, -28vw);
 }
 
 .react.skills {
-  background-color: #ffd1fb;
-  position: absolute;
-  top: -14em;
-  left: -12em;
-  transition: top 1s, left 1s, background-color 1s;
+  @include skills-mixin(#fffaf4, -14vw, -12vw);
 }
 
 .sass.skills {
-  background-color: #4ef9ff;
-  position: absolute;
-  top: 1em;
-  left: 26em;
-  transition: top 1s, left 1s, background-color 1s;
+  @include skills-mixin(#fffaf4, 1vw, 26vw);
 }
 
 #contact {

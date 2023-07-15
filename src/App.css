@@ -105,6 +105,14 @@ button.inactive:hover {
     width: 80%;
   }
 }
+#background {
+  background-color: #858585;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  height: 100vh;
+}
+
 #welcome {
   display: flex;
   justify-content: flex-start;
@@ -117,13 +125,13 @@ button.inactive:hover {
 }
 
 #firstWelcome {
-  padding-left: 15em;
+  padding-left: 15vw;
   animation: firstWelcome 0.6s ease-out;
 }
 
 #secondWelcome {
-  padding-left: 15em;
-  padding-bottom: 5em;
+  padding-left: 15vw;
+  padding-bottom: 7vw;
   animation: secondWelcome 0.6s ease-out;
   animation-fill-mode: both;
   animation-delay: 0.6s;
@@ -145,16 +153,24 @@ button.inactive:hover {
   animation-delay: 1.1s;
 }
 
-.BG {
-  fill: #f4feff;
+#BG {
+  fill: #f2fdff;
   z-index: -1;
   position: fixed;
   bottom: 0;
   right: 0;
 }
 
-.BG2 {
-  fill: rgba(255, 224, 167, 0.2392156863);
+#BG1 {
+  fill: rgba(169, 229, 255, 0.268);
+  z-index: -1;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+#BG2 {
+  fill: rgba(255, 241, 208, 0.337254902);
   z-index: -1;
   position: fixed;
   bottom: 0;
@@ -188,9 +204,10 @@ button.inactive:hover {
 }
 
 #skillsSkills {
-  background-color: #858585;
+  background-color: #ebebeb;
+  border: 1px solid #cacaca;
   position: absolute;
-  top: -2em;
+  top: -2vw;
   left: 0;
   padding: 0.4em 1em 0.4em 1em;
   border-radius: 25px;
@@ -202,52 +219,61 @@ button.inactive:hover {
 .react,
 .sass {
   background-color: #858585;
+  border: 1px solid #cacaca;
   border-radius: 10px;
   padding: 0.2em;
   opacity: 1;
   position: absolute;
-  top: -2em;
+  top: -2vw;
   left: 0;
   transition: top 1s, left 1s;
 }
 
+#skillsSvg {
+  stroke: #cacaca;
+  stroke-width: 1;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
 .html.skills {
-  background-color: #ffcbcb;
+  background-color: #fffaf4;
   position: absolute;
-  top: 13em;
-  left: 3em;
+  top: 12vw;
+  left: 3vw;
   transition: top 1s, left 1s, background-color 1s;
 }
 
 .css.skills {
-  background-color: #d7ffe0;
+  background-color: #fffaf4;
   position: absolute;
-  top: -20em;
-  left: 10em;
+  top: -17vw;
+  left: 10vw;
   transition: top 1s, left 1s, background-color 1s;
 }
 
 .javaScript.skills {
-  background-color: #d8d6ff;
+  background-color: #fffaf4;
   position: absolute;
-  top: 3em;
-  left: -28em;
+  top: 3vw;
+  left: -28vw;
   transition: top 1s, left 1s, background-color 1s;
 }
 
 .react.skills {
-  background-color: #ffd1fb;
+  background-color: #fffaf4;
   position: absolute;
-  top: -14em;
-  left: -12em;
+  top: -14vw;
+  left: -12vw;
   transition: top 1s, left 1s, background-color 1s;
 }
 
 .sass.skills {
-  background-color: #4ef9ff;
+  background-color: #fffaf4;
   position: absolute;
-  top: 1em;
-  left: 26em;
+  top: 1vw;
+  left: 26vw;
   transition: top 1s, left 1s, background-color 1s;
 }
 

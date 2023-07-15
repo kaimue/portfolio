@@ -49,12 +49,15 @@ const Layout = () => {
     if (classNames.welcomeClass === "active") {
       return (
         <div>
-          <svg className="BG" height={wHeight} width={wWidth}>
+          <svg id="BG" height={wHeight} width={wWidth}>
+            <rect height={wHeight} width={wWidth} />
+          </svg>
+          <svg id="BG1" height={wHeight} width={wWidth}>
             <polygon
               points={`0,${wHeight / 4} 0,${wHeight} ${wWidth},${wHeight}`}
             />
           </svg>
-          <svg className="BG2" height={wHeight} width={wWidth}>
+          <svg id="BG2" height={wHeight} width={wWidth}>
             <polygon
               points={`${wWidth},${wHeight} ${
                 wWidth / 5
@@ -67,12 +70,12 @@ const Layout = () => {
     } else if (classNames.aboutClass === "active") {
       return (
         <div>
-          <svg className="BG" height={wHeight} width={wWidth}>
+          <svg id="BG1" height={wHeight} width={wWidth}>
             <polygon
               points={`0,${wHeight / 3} 0,${wHeight} ${wWidth},${wHeight}`}
             />
           </svg>
-          <svg className="BG2" height={wHeight} width={wWidth}>
+          <svg id="BG2" height={wHeight} width={wWidth}>
             <polygon points={`${wWidth},${wHeight} 0,${wHeight} ${wWidth},0`} />
           </svg>
           <AboutMe></AboutMe>
@@ -81,14 +84,14 @@ const Layout = () => {
     } else if (classNames.skillClass === "active") {
       return (
         <div>
-          <svg className="BG" height={wHeight} width={wWidth}>
+          <svg id="BG1" height={wHeight} width={wWidth}>
             <polygon
               points={`${wWidth},${wHeight} ${
                 wWidth / 4
               },${wHeight} ${wWidth},${wHeight / 4}`}
             />
           </svg>
-          <svg className="BG2" height={wHeight} width={wWidth}>
+          <svg id="BG2" height={wHeight} width={wWidth}>
             <polygon
               points={`0,${wHeight / 6} 0,${wHeight} ${wWidth},${wHeight}`}
             />
@@ -99,14 +102,14 @@ const Layout = () => {
     } else if (classNames.contactClass === "active") {
       return (
         <div>
-          <svg className="BG" height={wHeight} width={wWidth}>
+          <svg id="BG1" height={wHeight} width={wWidth}>
             <polygon
               points={`${wWidth},${wHeight} ${
                 wWidth / 4
               },${wHeight} ${wWidth},0`}
             />
           </svg>
-          <svg className="BG2" height={wHeight} width={wWidth}>
+          <svg id="BG2" height={wHeight} width={wWidth}>
             <polygon
               points={`0,${wHeight / 3} 0,${wHeight} ${wWidth},${wHeight}`}
             />
@@ -216,9 +219,7 @@ const Layout = () => {
         ></button>
         <button id="hiddenButton"></button>
       </div>
-      <div id="layout" ref={elementRef}>
-        {displayed()}
-      </div>
+      <div ref={elementRef}>{displayed()}</div>
     </div>
   );
 };
