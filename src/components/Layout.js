@@ -34,7 +34,6 @@ const Layout = () => {
 
     observer.observe(element);
     return () => {
-      // Cleanup the observer by unobserving all elements
       observer.disconnect();
     };
   }, []);
@@ -49,18 +48,17 @@ const Layout = () => {
     if (classNames.welcomeClass === "active") {
       return (
         <div>
-          <svg id="BG" height={wHeight} width={wWidth}>
-            <rect height={wHeight} width={wWidth} />
-          </svg>
           <svg id="BG1" height={wHeight} width={wWidth}>
             <polygon
-              points={`0,${wHeight / 4} 0,${wHeight} ${wWidth},${wHeight}`}
+              points={`0,${wHeight} 0,${wHeight / 3} ${
+                wWidth / 1.2
+              },${wHeight}`}
             />
           </svg>
           <svg id="BG2" height={wHeight} width={wWidth}>
             <polygon
               points={`${wWidth},${wHeight} ${
-                wWidth / 5
+                wWidth / 3.5
               },${wHeight} ${wWidth},${wHeight / 1.5}`}
             />
           </svg>
@@ -72,11 +70,15 @@ const Layout = () => {
         <div>
           <svg id="BG1" height={wHeight} width={wWidth}>
             <polygon
-              points={`0,${wHeight / 3} 0,${wHeight} ${wWidth},${wHeight}`}
+              points={`${wWidth},${wHeight} 0,${wHeight / 2} 0,${wHeight}`}
             />
           </svg>
           <svg id="BG2" height={wHeight} width={wWidth}>
-            <polygon points={`${wWidth},${wHeight} 0,${wHeight} ${wWidth},0`} />
+            <polygon
+              points={`${wWidth},${wHeight} ${
+                wWidth / 7
+              },${wHeight} ${wWidth},${wHeight / 4}`}
+            />
           </svg>
           <AboutMe></AboutMe>
         </div>
@@ -123,42 +125,42 @@ const Layout = () => {
   const onScroll = (e) => {
     const y = e.deltaY;
     console.log(y);
-    if (classNames.welcomeClass === "active" && y > 50) {
+    if (classNames.welcomeClass === "active" && y > 80) {
       setClassNames({
         welcomeClass: "inactive",
         aboutClass: "active",
         skillClass: "inactive",
         contactClass: "inactive",
       });
-    } else if (classNames.aboutClass === "active" && y > 50) {
+    } else if (classNames.aboutClass === "active" && y > 80) {
       setClassNames({
         welcomeClass: "inactive",
         aboutClass: "inactive",
         skillClass: "active",
         contactClass: "inactive",
       });
-    } else if (classNames.aboutClass === "active" && y < -50) {
+    } else if (classNames.aboutClass === "active" && y < -80) {
       setClassNames({
         welcomeClass: "active",
         aboutClass: "inactive",
         skillClass: "inactive",
         contactClass: "inactive",
       });
-    } else if (classNames.skillClass === "active" && y > 50) {
+    } else if (classNames.skillClass === "active" && y > 80) {
       setClassNames({
         welcomeClass: "inactive",
         aboutClass: "inactive",
         skillClass: "inactive",
         contactClass: "active",
       });
-    } else if (classNames.skillClass === "active" && y < -50) {
+    } else if (classNames.skillClass === "active" && y < -80) {
       setClassNames({
         welcomeClass: "inactive",
         aboutClass: "active",
         skillClass: "inactive",
         contactClass: "inactive",
       });
-    } else if (classNames.contactClass === "active" && y < -50) {
+    } else if (classNames.contactClass === "active" && y < -80) {
       setClassNames({
         welcomeClass: "inactive",
         aboutClass: "inactive",

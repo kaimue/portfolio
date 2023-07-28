@@ -74,11 +74,11 @@ const Skills = () => {
 
   useEffect(() => {
     setClassName("skills");
+    console.log("run");
   }, []);
 
   useEffect(() => {
-    getPos();
-    const element = htmlRef?.current;
+    const element = htmlRef.current;
 
     if (!element) return;
 
@@ -90,10 +90,23 @@ const Skills = () => {
     });
 
     observer.observe(element);
+
+    console.log(dimensions.width);
+
     return () => {
       observer.disconnect();
     };
   }, [dimensions]);
+
+  useEffect(() => {
+    const onLoad = setInterval(getPos, 10);
+
+    const stopOnLoad = () => {
+      clearInterval(onLoad);
+    };
+
+    const myTimeout = setTimeout(stopOnLoad, 1500);
+  }, [dimensions.width, dimensions.height]);
 
   return (
     <div>

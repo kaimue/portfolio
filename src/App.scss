@@ -131,12 +131,12 @@ button.inactive:hover {
   }
 }
 
-#background {
-  background-color: #858585;
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  height: 100vh;
+#BG1 {
+  @include bg-mixin(rgba(255, 236, 182, 0.295));
+}
+
+#BG2 {
+  @include bg-mixin(#ffe7ff56);
 }
 
 #welcome {
@@ -147,7 +147,7 @@ button.inactive:hover {
 }
 
 #welcomeHeadline {
-  font-size: 1.6vw;
+  font-size: max(1.6vw, 22px);
 }
 
 #firstWelcome {
@@ -164,12 +164,13 @@ button.inactive:hover {
 }
 
 #portrait {
-  width: 25vw;
-  padding-bottom: 20vh;
-  padding-left: 25vw;
+  position: fixed;
+  bottom: 0;
+  right: -30vw;
+  height: 100vh;
 }
 
-#portraitpath {
+.portraitpath {
   stroke: $primary-color;
   fill: none;
   stroke-width: 1;
@@ -179,16 +180,11 @@ button.inactive:hover {
   animation-delay: 1.1s;
 }
 
-#BG {
-  @include bg-mixin(#f2fdff);
-}
-
-#BG1 {
-  @include bg-mixin(rgba(169, 229, 255, 0.268));
-}
-
-#BG2 {
-  @include bg-mixin(#fff1d056);
+.portraitpath.loaded {
+  stroke: $primary-color;
+  fill: none;
+  stroke-width: 1;
+  stroke-dasharray: 0;
 }
 
 #aboutMe {
@@ -198,8 +194,8 @@ button.inactive:hover {
   align-items: flex-start;
   text-align: center;
   height: 100vh;
-  padding-left: 10em;
-  padding-right: 10em;
+  padding-left: 18em;
+  padding-right: 18em;
 }
 
 .aboutMeActive {
@@ -232,7 +228,7 @@ button.inactive:hover {
 .javaScript,
 .react,
 .sass {
-  background-color: #858585;
+  background-color: #fffaf4;
   border: 1px solid #cacaca;
   border-radius: 10px;
   padding: 0.2em;
@@ -310,21 +306,103 @@ a:hover {
   width: 28px;
   height: 28px;
   padding-right: 0.8em;
+  padding-top: 0.4em;
 }
 
 .lilogo {
   width: 48px;
   height: 28px;
   padding-left: 0.8em;
+  padding-top: 0.4em;
   filter: invert(90%);
 }
 
 @media screen and (max-width: 720px) {
-  #homeButton {
-    display: none;
+  #firstWelcome {
+    padding-left: 18vw;
+    animation: firstWelcome 0.6s ease-out;
+  }
+
+  #secondWelcome {
+    padding-left: 18vw;
+    padding-bottom: 25vw;
+    animation: secondWelcome 0.6s ease-out;
+    animation-fill-mode: both;
+    animation-delay: 0.6s;
   }
 
   #portrait {
-    display: none;
+    position: fixed;
+    bottom: 0;
+    right: -25vw;
+    bottom: 20vw;
+    height: 100vh;
+  }
+
+  #aboutMe {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: center;
+    height: 100vh;
+    padding-left: 3em;
+    padding-right: 3em;
+  }
+
+  .aboutMeActive {
+    animation: reveal 1s;
+  }
+
+  #skillsSkills {
+    background-color: #ebebeb;
+    border: 1px solid #cacaca;
+    position: absolute;
+    top: -7vh;
+    left: -8vw;
+    border-radius: 25px;
+  }
+
+  .html,
+  .css,
+  .javaScript,
+  .react,
+  .sass {
+    background-color: #fffaf4;
+    border: 1px solid #cacaca;
+    border-radius: 10px;
+    opacity: 1;
+    position: absolute;
+    top: -7vh;
+    left: -8vw;
+    transition: top 1s, left 1s;
+  }
+
+  #skillsSvg {
+    stroke: #cacaca;
+    stroke-width: 1;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+  }
+
+  .html.skills {
+    @include skills-mixin(#fffaf4, 32vh, 3vw);
+  }
+
+  .css.skills {
+    @include skills-mixin(#fffaf4, -35vh, 10vw);
+  }
+
+  .javaScript.skills {
+    @include skills-mixin(#fffaf4, 8vh, -40vw);
+  }
+
+  .react.skills {
+    @include skills-mixin(#fffaf4, -23vh, -20vw);
+  }
+
+  .sass.skills {
+    @include skills-mixin(#fffaf4, 1vh, 26vw);
   }
 }
