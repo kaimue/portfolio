@@ -89,6 +89,12 @@ button.inactive:hover {
     opacity: 1;
   }
 }
+@keyframes position {
+  from {
+    top: -2vw;
+    left: 0;
+  }
+}
 @keyframes fade {
   0% {
     opacity: 0;
@@ -159,7 +165,7 @@ button.inactive:hover {
   stroke-dasharray: 5050;
   animation: strokeAni 2s;
   animation-fill-mode: both;
-  animation-delay: 1.1s;
+  animation-delay: 0.8s;
 }
 
 .portraitpath.loaded {
@@ -232,6 +238,7 @@ button.inactive:hover {
 .html.skills {
   background-color: #fffaf4;
   position: absolute;
+  animation: position 1s;
   top: 12vw;
   left: 3vw;
   transition: top 1s, left 1s, background-color 1s;
@@ -240,6 +247,7 @@ button.inactive:hover {
 .css.skills {
   background-color: #fffaf4;
   position: absolute;
+  animation: position 1s;
   top: -17vw;
   left: 10vw;
   transition: top 1s, left 1s, background-color 1s;
@@ -248,6 +256,7 @@ button.inactive:hover {
 .javaScript.skills {
   background-color: #fffaf4;
   position: absolute;
+  animation: position 1s;
   top: 3vw;
   left: -28vw;
   transition: top 1s, left 1s, background-color 1s;
@@ -256,6 +265,7 @@ button.inactive:hover {
 .react.skills {
   background-color: #fffaf4;
   position: absolute;
+  animation: position 1s;
   top: -14vw;
   left: -12vw;
   transition: top 1s, left 1s, background-color 1s;
@@ -264,6 +274,7 @@ button.inactive:hover {
 .sass.skills {
   background-color: #fffaf4;
   position: absolute;
+  animation: position 1s;
   top: 1vw;
   left: 26vw;
   transition: top 1s, left 1s, background-color 1s;
@@ -320,6 +331,9 @@ a:hover {
 }
 
 @media screen and (max-width: 720px) {
+  #homeButton {
+    display: none;
+  }
   #firstWelcome {
     padding-left: 18vw;
     animation: firstWelcome 0.6s ease-out;
@@ -347,6 +361,9 @@ a:hover {
     height: 100vh;
     padding-left: 3em;
     padding-right: 3em;
+  }
+  #aboutMeText {
+    font-size: small;
   }
   .aboutMeActive {
     animation: reveal 1s;
@@ -383,6 +400,7 @@ a:hover {
   .html.skills {
     background-color: #fffaf4;
     position: absolute;
+    animation: position 1s;
     top: 32vh;
     left: 3vw;
     transition: top 1s, left 1s, background-color 1s;
@@ -390,6 +408,7 @@ a:hover {
   .css.skills {
     background-color: #fffaf4;
     position: absolute;
+    animation: position 1s;
     top: -35vh;
     left: 10vw;
     transition: top 1s, left 1s, background-color 1s;
@@ -397,6 +416,7 @@ a:hover {
   .javaScript.skills {
     background-color: #fffaf4;
     position: absolute;
+    animation: position 1s;
     top: 8vh;
     left: -40vw;
     transition: top 1s, left 1s, background-color 1s;
@@ -404,6 +424,7 @@ a:hover {
   .react.skills {
     background-color: #fffaf4;
     position: absolute;
+    animation: position 1s;
     top: -23vh;
     left: -20vw;
     transition: top 1s, left 1s, background-color 1s;
@@ -411,6 +432,7 @@ a:hover {
   .sass.skills {
     background-color: #fffaf4;
     position: absolute;
+    animation: position 1s;
     top: 1vh;
     left: 26vw;
     transition: top 1s, left 1s, background-color 1s;

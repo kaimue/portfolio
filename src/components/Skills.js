@@ -2,7 +2,6 @@ import React from "react";
 import { useState, useEffect, useRef } from "react";
 
 const Skills = () => {
-  const [className, setClassName] = useState("");
   const [skillsPos, setSkillsPos] = useState({ left: 0, top: 0 });
   const [htmlPos, setHtmlPos] = useState({ left: 0, top: 0 });
   const [cssPos, setCssPos] = useState({ left: 0, top: 0 });
@@ -14,6 +13,7 @@ const Skills = () => {
     width: window.innerWidth,
   });
 
+  const className = "skills";
   const skillsRef = useRef(null);
   const htmlRef = useRef(null);
   const cssRef = useRef(null);
@@ -71,11 +71,6 @@ const Skills = () => {
       top: posJavaScript.top + posJavaScript.height / 2,
     });
   };
-
-  useEffect(() => {
-    setClassName("skills");
-    console.log("run");
-  }, []);
 
   useEffect(() => {
     const element = htmlRef.current;

@@ -13,6 +13,8 @@ const Layout = () => {
     contactClass: "inactive",
   });
 
+  const [startY, setStartY] = useState();
+
   const [dimensions, setDimensions] = useState({
     height: window.innerHeight,
     width: window.innerWidth,
@@ -124,7 +126,6 @@ const Layout = () => {
 
   const onScroll = (e) => {
     const y = e.deltaY;
-    console.log(y);
     if (classNames.welcomeClass === "active" && y > 80) {
       setClassNames({
         welcomeClass: "inactive",
@@ -170,7 +171,67 @@ const Layout = () => {
     }
   };
 
+  const setOnTouch = (e) => {
+    if (e.changedTouches) {
+      const start = e.changedTouches[0].clientY;
+      setStartY(start);
+      console.log(startY);
+    }
+  };
+
+  const onTouch = (e) => {
+    if (e.changedTouches) {
+      const endX = e.changedTouches[0].clientY;
+      console.log(e.changedTouches[0].clientY);
+      if (classNames.welcomeClass === "active" && startY > endX) {
+        setClassNames({
+          welcomeClass: "inactive",
+          aboutClass: "active",
+          skillClass: "inactive",
+          contactClass: "inactive",
+        });
+      } else if (classNames.aboutClass === "active" && startY > endX) {
+        setClassNames({
+          welcomeClass: "inactive",
+          aboutClass: "inactive",
+          skillClass: "active",
+          contactClass: "inactive",
+        });
+      } else if (classNames.aboutClass === "active" && startY < endX) {
+        setClassNames({
+          welcomeClass: "active",
+          aboutClass: "inactive",
+          skillClass: "inactive",
+          contactClass: "inactive",
+        });
+      } else if (classNames.skillClass === "active" && startY > endX) {
+        setClassNames({
+          welcomeClass: "inactive",
+          aboutClass: "inactive",
+          skillClass: "inactive",
+          contactClass: "active",
+        });
+      } else if (classNames.skillClass === "active" && startY < endX) {
+        setClassNames({
+          welcomeClass: "inactive",
+          aboutClass: "active",
+          skillClass: "inactive",
+          contactClass: "inactive",
+        });
+      } else if (classNames.contactClass === "active" && startY < endX) {
+        setClassNames({
+          welcomeClass: "inactive",
+          aboutClass: "inactive",
+          skillClass: "active",
+          contactClass: "inactive",
+        });
+      }
+    }
+  };
+
   window.addEventListener("wheel", onScroll);
+  window.addEventListener("touchstart", setOnTouch);
+  window.addEventListener("touchend", onTouch);
 
   return (
     <div>

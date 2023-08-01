@@ -6,7 +6,7 @@ const AboutMe = () => {
       <div className="aboutMeActive">
         <div>
           <h2>About Me</h2>
-          <p>
+          <p id="aboutMeText">
             I finished a boot-camp in web & app development in 2022 and come
             from a background of photography and movie-making. I focus on
             frontend development and also have basic understanding of backend
