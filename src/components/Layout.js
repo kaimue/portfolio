@@ -105,6 +105,7 @@ const Layout = () => {
 
   useEffect(() => {
     const element = elementRef?.current;
+    console.log(dimensions);
     if (!element) return;
     const observer = new ResizeObserver(() => {
       setDimensions({

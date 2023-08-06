@@ -84,12 +84,12 @@ button.inactive:hover {
 
 @keyframes secondWelcome {
   0% {
-    opacity: 0;
     transform: translateX(100%);
+    opacity: 0;
   }
   100% {
-    opacity: 1;
     transform: translateX(0%);
+    opacity: 1;
   }
 }
 
@@ -153,6 +153,7 @@ button.inactive:hover {
   justify-content: flex-start;
   align-items: flex-end;
   height: 100vh;
+  width: 100vw;
 }
 
 #welcomeHeadline {
@@ -177,6 +178,7 @@ button.inactive:hover {
   bottom: 0;
   right: -30vw;
   height: 100vh;
+  width: 100vw;
 }
 
 .portraitpath {
@@ -187,13 +189,6 @@ button.inactive:hover {
   animation: strokeAni 2s;
   animation-fill-mode: both;
   animation-delay: 0.8s;
-}
-
-.portraitpath.loaded {
-  stroke: $primary-color;
-  fill: none;
-  stroke-width: 1;
-  stroke-dasharray: 0;
 }
 
 #aboutMe {
@@ -331,25 +326,40 @@ a:hover {
     display: none;
   }
 
+  #welcome {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  #welcomeHeadline {
+    font-size: max(1.6vw, 22px);
+    text-align: center;
+  }
+
   #firstWelcome {
-    padding-left: 18vw;
-    animation: firstWelcome 0.6s ease-out;
+    padding: 0%;
+    animation: none;
   }
 
   #secondWelcome {
-    padding-left: 18vw;
+    padding-left: 0;
     padding-bottom: 25vw;
-    animation: secondWelcome 0.6s ease-out;
-    animation-fill-mode: both;
-    animation-delay: 0.6s;
+    animation: none;
   }
 
   #portrait {
     position: fixed;
-    bottom: 0;
-    right: -25vw;
-    bottom: 20vw;
     height: 100vh;
+    width: 100vw;
+    right: -25vw;
+    bottom: 10vh;
+  }
+
+  .portraitpath {
+    animation-delay: 0s;
   }
 
   #aboutMe {
