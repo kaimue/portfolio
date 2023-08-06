@@ -12,7 +12,6 @@ const Skills = () => {
     height: window.innerHeight,
     width: window.innerWidth,
   });
-
   const className = "skills";
   const skillsRef = useRef(null);
   const htmlRef = useRef(null);
@@ -29,7 +28,6 @@ const Skills = () => {
       left: posSkills.left + posSkills.width / 2,
       top: posSkills.top + posSkills.height / 2,
     });
-    console.log(posSkills);
 
     const html = htmlRef?.current;
     if (!html) return;
@@ -74,20 +72,14 @@ const Skills = () => {
 
   useEffect(() => {
     const element = htmlRef.current;
-
     if (!element) return;
-
     const observer = new ResizeObserver(() => {
       setDimensions({
         height: window.innerHeight,
         width: window.innerWidth,
       });
     });
-
     observer.observe(element);
-
-    console.log(dimensions.width);
-
     return () => {
       observer.disconnect();
     };
@@ -95,11 +87,9 @@ const Skills = () => {
 
   useEffect(() => {
     const onLoad = setInterval(getPos, 10);
-
     const stopOnLoad = () => {
       clearInterval(onLoad);
     };
-
     const myTimeout = setTimeout(stopOnLoad, 1500);
   }, [dimensions.width, dimensions.height]);
 

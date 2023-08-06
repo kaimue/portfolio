@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from "react";
-
 import Welcome from "./Welcome";
 import AboutMe from "./AboutMe";
 import Skills from "./Skills";
@@ -12,37 +11,13 @@ const Layout = () => {
     skillClass: "inactive",
     contactClass: "inactive",
   });
-
-  const [startY, setStartY] = useState();
-
+  const [count, setCount] = useState(1);
+  const [startY, setStartY] = useState(0);
   const [dimensions, setDimensions] = useState({
     height: window.innerHeight,
     width: window.innerWidth,
   });
-
   const elementRef = useRef(null);
-
-  useEffect(() => {
-    const element = elementRef?.current;
-
-    if (!element) return;
-
-    const observer = new ResizeObserver(() => {
-      setDimensions({
-        height: window.innerHeight,
-        width: window.innerWidth,
-      });
-    });
-
-    observer.observe(element);
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
-  useEffect(() => {
-    displayed();
-  }, [classNames, dimensions]);
 
   const displayed = () => {
     const wHeight = dimensions.height;
@@ -124,101 +99,71 @@ const Layout = () => {
     }
   };
 
-  const onScroll = (e) => {
-    const y = e.deltaY;
-    if (classNames.welcomeClass === "active" && y > 80) {
-      setClassNames({
-        welcomeClass: "inactive",
-        aboutClass: "active",
-        skillClass: "inactive",
-        contactClass: "inactive",
-      });
-    } else if (classNames.aboutClass === "active" && y > 80) {
-      setClassNames({
-        welcomeClass: "inactive",
-        aboutClass: "inactive",
-        skillClass: "active",
-        contactClass: "inactive",
-      });
-    } else if (classNames.aboutClass === "active" && y < -80) {
-      setClassNames({
-        welcomeClass: "active",
-        aboutClass: "inactive",
-        skillClass: "inactive",
-        contactClass: "inactive",
-      });
-    } else if (classNames.skillClass === "active" && y > 80) {
-      setClassNames({
-        welcomeClass: "inactive",
-        aboutClass: "inactive",
-        skillClass: "inactive",
-        contactClass: "active",
-      });
-    } else if (classNames.skillClass === "active" && y < -80) {
-      setClassNames({
-        welcomeClass: "inactive",
-        aboutClass: "active",
-        skillClass: "inactive",
-        contactClass: "inactive",
-      });
-    } else if (classNames.contactClass === "active" && y < -80) {
-      setClassNames({
-        welcomeClass: "inactive",
-        aboutClass: "inactive",
-        skillClass: "active",
-        contactClass: "inactive",
-      });
-    }
-  };
+  useEffect(() => {
+    displayed();
+  }, [classNames, dimensions]);
 
-  const setOnTouch = (e) => {
-    if (e.changedTouches) {
-      const start = e.changedTouches[0].clientY;
-      setStartY(start);
-      console.log(startY);
-    }
-  };
+  useEffect(() => {
+    const element = elementRef?.current;
+    if (!element) return;
+    const observer = new ResizeObserver(() => {
+      setDimensions({
+        height: window.innerHeight,
+        width: window.innerWidth,
+      });
+    });
+    observer.observe(element);
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
-  const onTouch = (e) => {
-    if (e.changedTouches) {
-      const endX = e.changedTouches[0].clientY;
-      console.log(e.changedTouches[0].clientY);
-      if (classNames.welcomeClass === "active" && startY > endX) {
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCount(count + 1);
+    }, 700);
+    return () => clearInterval(interval);
+  }, [count]);
+
+  useEffect(() => {
+    const onScroll = (e) => {
+      const y = e.deltaY;
+      if (classNames.welcomeClass === "active" && y > 80) {
         setClassNames({
           welcomeClass: "inactive",
           aboutClass: "active",
           skillClass: "inactive",
           contactClass: "inactive",
         });
-      } else if (classNames.aboutClass === "active" && startY > endX) {
+      } else if (classNames.aboutClass === "active" && y > 80) {
         setClassNames({
           welcomeClass: "inactive",
           aboutClass: "inactive",
           skillClass: "active",
           contactClass: "inactive",
         });
-      } else if (classNames.aboutClass === "active" && startY < endX) {
+      } else if (classNames.aboutClass === "active" && y < -80) {
         setClassNames({
           welcomeClass: "active",
           aboutClass: "inactive",
           skillClass: "inactive",
           contactClass: "inactive",
         });
-      } else if (classNames.skillClass === "active" && startY > endX) {
+      } else if (classNames.skillClass === "active" && y > 80) {
         setClassNames({
           welcomeClass: "inactive",
           aboutClass: "inactive",
           skillClass: "inactive",
           contactClass: "active",
         });
-      } else if (classNames.skillClass === "active" && startY < endX) {
+      } else if (classNames.skillClass === "active" && y < -80) {
         setClassNames({
           welcomeClass: "inactive",
           aboutClass: "active",
           skillClass: "inactive",
           contactClass: "inactive",
         });
-      } else if (classNames.contactClass === "active" && startY < endX) {
+      } else if (classNames.contactClass === "active" && y < -80) {
         setClassNames({
           welcomeClass: "inactive",
           aboutClass: "inactive",
@@ -226,12 +171,82 @@ const Layout = () => {
           contactClass: "inactive",
         });
       }
-    }
-  };
+    };
 
-  window.addEventListener("wheel", onScroll);
-  window.addEventListener("touchstart", setOnTouch);
-  window.addEventListener("touchend", onTouch);
+    window.addEventListener("wheel", onScroll);
+    return () => {
+      window.removeEventListener("wheel", onScroll);
+    };
+  }, [count]);
+
+  useEffect(() => {
+    const setOnTouch = (e) => {
+      if (e.changedTouches) {
+        const start = e.changedTouches[0].clientY;
+        setStartY(start);
+      }
+    };
+    window.addEventListener("touchstart", setOnTouch);
+    return () => {
+      window.removeEventListener("touchstart", setOnTouch);
+    };
+  }, []);
+
+  useEffect(() => {
+    const onTouch = (e) => {
+      if (e.changedTouches) {
+        const endX = e.changedTouches[0].clientY;
+        if (classNames.welcomeClass === "active" && startY > endX) {
+          setClassNames({
+            welcomeClass: "inactive",
+            aboutClass: "active",
+            skillClass: "inactive",
+            contactClass: "inactive",
+          });
+        } else if (classNames.aboutClass === "active" && startY > endX) {
+          setClassNames({
+            welcomeClass: "inactive",
+            aboutClass: "inactive",
+            skillClass: "active",
+            contactClass: "inactive",
+          });
+        } else if (classNames.aboutClass === "active" && startY < endX) {
+          setClassNames({
+            welcomeClass: "active",
+            aboutClass: "inactive",
+            skillClass: "inactive",
+            contactClass: "inactive",
+          });
+        } else if (classNames.skillClass === "active" && startY > endX) {
+          setClassNames({
+            welcomeClass: "inactive",
+            aboutClass: "inactive",
+            skillClass: "inactive",
+            contactClass: "active",
+          });
+        } else if (classNames.skillClass === "active" && startY < endX) {
+          setClassNames({
+            welcomeClass: "inactive",
+            aboutClass: "active",
+            skillClass: "inactive",
+            contactClass: "inactive",
+          });
+        } else if (classNames.contactClass === "active" && startY < endX) {
+          setClassNames({
+            welcomeClass: "inactive",
+            aboutClass: "inactive",
+            skillClass: "active",
+            contactClass: "inactive",
+          });
+        }
+      }
+    };
+    window.addEventListener("touchend", onTouch);
+
+    return () => {
+      window.removeEventListener("touchend", onTouch);
+    };
+  }, [startY]);
 
   return (
     <div>
