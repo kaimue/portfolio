@@ -254,7 +254,8 @@ const Layout = () => {
       <div id="homeButton">
         <button
           className={classNames.welcomeClass}
-          alt="Welcome Page"
+          type="button"
+          alt="Go to Welcome Page"
           onClick={() => {
             setClassNames({
               welcomeClass: "active",
@@ -266,6 +267,7 @@ const Layout = () => {
         ></button>
         <button
           className={classNames.aboutClass}
+          type="button"
           alt="Abot Me Page"
           onClick={() => {
             setClassNames({
@@ -278,6 +280,7 @@ const Layout = () => {
         ></button>
         <button
           className={classNames.skillClass}
+          type="button"
           alt="Skills Page"
           onClick={() => {
             setClassNames({
@@ -290,6 +293,7 @@ const Layout = () => {
         ></button>
         <button
           className={classNames.contactClass}
+          type="button"
           alt="Contact Page"
           onClick={() => {
             setClassNames({
