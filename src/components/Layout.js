@@ -300,7 +300,6 @@ const Layout = () => {
             });
           }}
         ></button>
-        <button id="hiddenButton"></button>
       </div>
       <div ref={elementRef}>{displayed()}</div>
     </div>

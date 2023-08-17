@@ -32,15 +32,8 @@ body {
   top: 5em;
   left: 5em;
   z-index: 1;
-}
-
-#hiddenButton {
-  background-color: none;
-  border: none;
-  padding: 1em 1em;
-  margin: 0.3em 0.3em;
-  border-radius: 30%;
-  opacity: 0;
+  width: 3vw;
+  height: 3vw;
 }
 
 button.active {
