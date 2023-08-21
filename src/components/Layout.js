@@ -191,7 +191,7 @@ const Layout = () => {
     return () => {
       window.removeEventListener("touchstart", setOnTouch);
     };
-  }, []);
+  }, [count]);
 
   useEffect(() => {
     const onTouch = (e) => {
