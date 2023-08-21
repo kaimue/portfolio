@@ -173,6 +173,7 @@ button.inactive:hover {
   height: 100vh;
   padding-left: 18em;
   padding-right: 18em;
+  overscroll-behavior: contain;
 }
 
 .aboutMeActive {
@@ -184,6 +185,7 @@ button.inactive:hover {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  overscroll-behavior: contain;
 }
 
 .skillsParent {
@@ -277,6 +279,7 @@ button.inactive:hover {
   height: 100vh;
   padding-left: 10em;
   padding-right: 10em;
+  overscroll-behavior: contain;
 }
 
 .contactLine {
